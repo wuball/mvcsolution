@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.Validation;
 using System.Text;
-using MvcSolution.Data;
 
 namespace MvcSolution.Data
 {
@@ -20,7 +19,8 @@ namespace MvcSolution.Data
 
         public MvcSolutionDbContext()
         {
-            Database.SetInitializer<MvcSolutionDbContext>(null);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MvcSolutionDbContext, DbConfiguration>());
+            //Database.SetInitializer<MvcSolutionDbContext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
